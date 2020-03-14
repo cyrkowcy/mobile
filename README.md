@@ -1,12 +1,13 @@
-#mobile
+# mobile  
+[![Build Status](http://149.156.146.249:60001/jenkins/job/mobile/job/master/badge/icon?style=flat-square)](http://149.156.146.249:60001/jenkins/job/mobile/job/master/)
 
-##Setup
+## Setup
  1. Clone repository
  2. Disable line ending normalisation  
   ```git config core.autocrlf false```
  3. Open project in Intellij IDEA/Android Studio
 
-##Working with project
+## Working with project
 Build project:  
 ```./gradlew build```
 
