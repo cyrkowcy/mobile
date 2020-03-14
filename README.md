@@ -79,9 +79,14 @@ Fix checkstyle issues:
   there is a specific reason not to.
 
   Tip: Use the following command while being on "master", to list merged
-  branches:
-
+  branches:  
+  
+  un*x/BSD:
   ```shell
-  $ git branch --merged | grep -v "\*"
+  $ git branch --merged | grep "\*"
+  ```
+  or Windows
+  ```powershell
+  > git branch --merged | Select-String -Pattern "\*" 
   ```
 
