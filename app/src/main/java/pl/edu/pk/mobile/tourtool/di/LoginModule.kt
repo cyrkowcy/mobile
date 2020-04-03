@@ -5,8 +5,8 @@ import dagger.Binds
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 import dagger.multibindings.IntoMap
-import pl.edu.pk.mobile.tourtool.fragments.LoginFragment
-import pl.edu.pk.mobile.tourtool.fragments.LoginViewModel
+import pl.edu.pk.mobile.tourtool.fragments.login.LoginFragment
+import pl.edu.pk.mobile.tourtool.fragments.login.LoginViewModel
 
 @Module
 abstract class LoginModule {

@@ -1,4 +1,4 @@
-package pl.edu.pk.mobile.tourtool.fragments
+package pl.edu.pk.mobile.tourtool.fragments.login
 
 import android.os.Bundle
 import android.view.LayoutInflater

@@ -6,7 +6,7 @@
 
   <fragment
     android:id="@+id/loginFragment"
-    android:name="pl.edu.pk.mobile.tourtool.fragments.LoginFragment"
+    android:name="pl.edu.pk.mobile.tourtool.fragments.login.LoginFragment"
     android:label="@string/loginFragmentLabel">
 
   </fragment>
