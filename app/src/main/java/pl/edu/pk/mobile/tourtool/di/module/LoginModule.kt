@@ -1,10 +1,12 @@
-package pl.edu.pk.mobile.tourtool.di
+package pl.edu.pk.mobile.tourtool.di.module
 
 import androidx.lifecycle.ViewModel
 import dagger.Binds
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 import dagger.multibindings.IntoMap
+import pl.edu.pk.mobile.tourtool.di.ViewModelBuilder
+import pl.edu.pk.mobile.tourtool.di.ViewModelKey
 import pl.edu.pk.mobile.tourtool.fragments.login.LoginFragment
 import pl.edu.pk.mobile.tourtool.fragments.login.LoginViewModel
 

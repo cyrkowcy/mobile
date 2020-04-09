@@ -1,12 +1,11 @@
 package pl.edu.pk.mobile.tourtool.fragments
 
-import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProviders
 import pl.edu.pk.mobile.tourtool.R
 
 class LoggedInFragment : Fragment() {
@@ -18,7 +17,8 @@ class LoggedInFragment : Fragment() {
   private lateinit var viewModel: LoggedInViewModel
 
   override fun onCreateView(
-    inflater: LayoutInflater, container: ViewGroup?,
+    inflater: LayoutInflater,
+    container: ViewGroup?,
     savedInstanceState: Bundle?
   ): View? {
     return inflater.inflate(R.layout.logged_in_fragment, container, false)
@@ -29,5 +29,4 @@ class LoggedInFragment : Fragment() {
     viewModel = ViewModelProviders.of(this).get(LoggedInViewModel::class.java)
     // TODO: Use the ViewModel
   }
-
 }

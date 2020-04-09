@@ -2,7 +2,7 @@ package pl.edu.pk.mobile.tourtool
 
 import dagger.android.AndroidInjector
 import dagger.android.support.DaggerApplication
-import pl.edu.pk.mobile.tourtool.di.DaggerApplicationComponent
+import pl.edu.pk.mobile.tourtool.di.component.DaggerApplicationComponent
 
 class TourToolApplication : DaggerApplication() {
   override fun applicationInjector(): AndroidInjector<out DaggerApplication> {
