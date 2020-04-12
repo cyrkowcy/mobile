@@ -1,10 +1,10 @@
-package pl.edu.pk.mobile.tourtool.repositories
+package pl.edu.pk.mobile.tourtool.service.repositories
 
 import java.lang.Exception
-import pl.edu.pk.mobile.tourtool.model.Email
-import pl.edu.pk.mobile.tourtool.model.JWT
-import pl.edu.pk.mobile.tourtool.model.Password
-import pl.edu.pk.mobile.tourtool.model.User
+import pl.edu.pk.mobile.tourtool.service.model.Email
+import pl.edu.pk.mobile.tourtool.service.model.JWT
+import pl.edu.pk.mobile.tourtool.service.model.Password
+import pl.edu.pk.mobile.tourtool.service.model.User
 
 interface UserRepository {
   suspend fun validateCredentials(email: Email, password: Password): JWT

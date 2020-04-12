@@ -1,4 +1,4 @@
-package pl.edu.pk.mobile.tourtool.utils
+package pl.edu.pk.mobile.tourtool.util
 
 open class Event<out T>(private val content: T) {
   var hasBeenHandled = false
@@ -14,7 +14,6 @@ open class Event<out T>(private val content: T) {
       hasBeenHandled = true
       content
     }
-
 
   /**
    * Returns the content, even if it's already been handled.

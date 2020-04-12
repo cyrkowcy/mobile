@@ -17,7 +17,10 @@ android {
     versionName "1.0"
     testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
   }
-  kapt.generateStubs = true
+
+  kapt {
+    generateStubs = true
+  }
 
   buildTypes {
     release {
@@ -52,6 +55,29 @@ dependencies {
   androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
   implementation 'androidx.navigation:navigation-fragment-ktx:2.2.1'
   implementation 'androidx.navigation:navigation-ui-ktx:2.2.1'
+
+  // Dependencies for local unit tests
+  testImplementation "junit:junit:$junitVersion"
+  testImplementation "org.mockito:mockito-core:$mockitoVersion"
+  testImplementation "androidx.arch.core:core-testing:$archTestingVersion"
+  testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutinesVersion"
+  testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutinesVersion"
+  testImplementation "com.google.truth:truth:$truthVersion"
+
+  // Dependencies for Android unit tests
+  androidTestImplementation "junit:junit:$junitVersion"
+  androidTestImplementation "org.mockito:mockito-core:$mockitoVersion"
+  androidTestImplementation "com.linkedin.dexmaker:dexmaker-mockito:$dexMakerVersion"
+  androidTestImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutinesVersion"
+
+  // AndroidX Test - JVM testing
+  testImplementation "androidx.test:core-ktx:$androidXTestCoreVersion"
+  testImplementation "androidx.test.ext:junit-ktx:$androidXTestExtKotlinRunnerVersion"
+  testImplementation "androidx.test:rules:$androidXTestRulesVersion"
+  // Once https://issuetracker.google.com/127986458 is fixed this can be testImplementation
+  implementation "androidx.fragment:fragment-testing:$fragmentVersion"
+  implementation "androidx.test:core:$androidXTestCoreVersion"
+  implementation "androidx.fragment:fragment:$fragmentVersion"
 
   // Dagger
   implementation "com.google.dagger:dagger:$daggerVersion"

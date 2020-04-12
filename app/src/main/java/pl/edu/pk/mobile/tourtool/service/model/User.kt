@@ -1,4 +1,4 @@
-package pl.edu.pk.mobile.tourtool.model
+package pl.edu.pk.mobile.tourtool.service.model
 
 class User(
   firstName: Name,

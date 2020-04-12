@@ -1,17 +1,16 @@
-package pl.edu.pk.mobile.tourtool.fragments.login
+package pl.edu.pk.mobile.tourtool.fragment.login
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import kotlinx.coroutines.launch
 import javax.inject.Inject
-import pl.edu.pk.mobile.tourtool.model.Email
-import pl.edu.pk.mobile.tourtool.model.Password
-import pl.edu.pk.mobile.tourtool.repositories.UserRepository
-import pl.edu.pk.mobile.tourtool.repositories.WrongCredentialsException
-import pl.edu.pk.mobile.tourtool.utils.Event
-import kotlin.math.E
+import kotlinx.coroutines.launch
+import pl.edu.pk.mobile.tourtool.service.model.Email
+import pl.edu.pk.mobile.tourtool.service.model.Password
+import pl.edu.pk.mobile.tourtool.service.repositories.UserRepository
+import pl.edu.pk.mobile.tourtool.service.repositories.WrongCredentialsException
+import pl.edu.pk.mobile.tourtool.util.Event
 
 class LoginViewModel @Inject constructor(
   val userRepository: UserRepository
@@ -29,6 +28,10 @@ class LoginViewModel @Inject constructor(
   private val _dataLoading = MutableLiveData<Boolean>(false)
   val dataLoading: LiveData<Boolean> = _dataLoading
 
+  // One-way databinding, exposing only immutable LiveData
+  private val _loginSuccess = MutableLiveData<Event<Boolean>>()
+  val loginSuccess: LiveData<Event<Boolean>> = _loginSuccess
+
   private val _toastMessage = MutableLiveData<Event<String>>()
   val toastMessage: LiveData<Event<String>> = _toastMessage
 
@@ -44,13 +47,16 @@ class LoginViewModel @Inject constructor(
     viewModelScope.launch {
       try {
         _dataLoading.postValue(true)
-        userRepository.validateCredentials(Email(email.value.toString()), Password(password.value.toString()))
+        userRepository.validateCredentials(
+          Email(email.value.toString()),
+          Password(password.value.toString())
+        )
+        _loginSuccess.value = Event(true)
         _dataLoading.postValue(false)
       } catch (e: WrongCredentialsException) {
         _dataLoading.postValue(false)
-        _toastMessage.value = Event("Wrong credentials")
+        _toastMessage.value = Event(e.message.toString())
       }
     }
-
   }
 }

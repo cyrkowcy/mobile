@@ -1,13 +1,15 @@
-package pl.edu.pk.mobile.tourtool.fragments.login
+package pl.edu.pk.mobile.tourtool.fragment.login
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import dagger.android.support.AndroidSupportInjection
 import dagger.android.support.DaggerFragment
 import javax.inject.Inject
@@ -38,8 +40,15 @@ class LoginFragment : DaggerFragment() {
     viewDataBinding = LoginFragmentBinding.bind(root).apply {
       this.viewmodel = viewModel
     }
-    viewDataBinding.lifecycleOwner = this.viewLifecycleOwner
     return viewDataBinding.root
+  }
+
+  override fun onActivityCreated(savedInstanceState: Bundle?) {
+    super.onActivityCreated(savedInstanceState)
+
+    viewDataBinding.lifecycleOwner = this.viewLifecycleOwner
+
+    setupSignUpBtn()
   }
 
   private fun subscribeViewModel() {
@@ -48,5 +57,32 @@ class LoginFragment : DaggerFragment() {
         Toast.makeText(this.context, message, Toast.LENGTH_LONG).show()
       }
     })
+    viewModel.loginSuccess.observe(viewLifecycleOwner, Observer {
+      it.getContentIfNotHandled()?.let {
+        if (it) {
+          navigateToLoggedIn()
+        }
+      }
+    })
+  }
+
+  private fun setupSignUpBtn() {
+    activity?.findViewById<Button>(R.id.login_signin_btn)?.let {
+      it.setOnClickListener {
+        navigateToSignUp()
+      }
+    }
+  }
+
+  private fun navigateToSignUp() {
+    val action =
+      LoginFragmentDirections.actionToSignUpFragment()
+    findNavController().navigate(action)
+  }
+
+  private fun navigateToLoggedIn() {
+    val action =
+      LoginFragmentDirections.actionToLoggedInFragment()
+    findNavController().navigate(action)
   }
 }

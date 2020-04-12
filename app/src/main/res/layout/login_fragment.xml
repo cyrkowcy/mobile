@@ -9,13 +9,13 @@
 
     <variable
       name="viewmodel"
-      type="pl.edu.pk.mobile.tourtool.fragments.login.LoginViewModel" />
+      type="pl.edu.pk.mobile.tourtool.fragment.login.LoginViewModel" />
   </data>
 
   <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.login.LoginFragment">
+    tools:context=".fragment.login.LoginFragment">
 
 
     <EditText
@@ -69,7 +69,8 @@
       android:text="@string/sign_in"
       app:layout_constraintBottom_toBottomOf="parent"
       app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintStart_toStartOf="parent" />
+      app:layout_constraintStart_toStartOf="parent"
+      />
 
     <ProgressBar
       android:id="@+id/progressBar"

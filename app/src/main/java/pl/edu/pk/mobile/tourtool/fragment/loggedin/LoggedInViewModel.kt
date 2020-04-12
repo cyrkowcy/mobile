@@ -1,4 +1,4 @@
-package pl.edu.pk.mobile.tourtool.fragments
+package pl.edu.pk.mobile.tourtool.fragment.loggedin
 
 import androidx.lifecycle.ViewModel
 

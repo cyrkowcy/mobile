@@ -7,4 +7,5 @@
   <string name="password">Password</string>
   <string name="sign_in">Sign-in</string>
   <string name="wait_message">Please wait</string>
+  <string name="tour_tool">TourTool</string>
 </resources>

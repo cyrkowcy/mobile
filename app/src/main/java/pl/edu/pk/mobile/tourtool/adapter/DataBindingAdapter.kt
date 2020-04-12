@@ -1,4 +1,4 @@
-package pl.edu.pk.mobile.tourtool
+package pl.edu.pk.mobile.tourtool.adapter
 
 import android.transition.TransitionManager
 import android.view.View

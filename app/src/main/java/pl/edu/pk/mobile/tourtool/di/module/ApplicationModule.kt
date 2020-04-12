@@ -5,8 +5,8 @@ import dagger.Provides
 import javax.inject.Singleton
 import kotlin.jvm.JvmStatic
 import kotlinx.coroutines.Dispatchers
-import pl.edu.pk.mobile.tourtool.data.MockUserRepository
-import pl.edu.pk.mobile.tourtool.repositories.UserRepository
+import pl.edu.pk.mobile.tourtool.service.data.MockUserRepository
+import pl.edu.pk.mobile.tourtool.service.repositories.UserRepository
 
 @Module(includes = [ApplicationModuleBinds::class])
 object ApplicationModule {
