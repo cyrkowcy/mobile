@@ -6,34 +6,9 @@
 
   <fragment
     android:id="@+id/loginFragment"
-    android:name="pl.edu.pk.mobile.tourtool.fragment.login.LoginFragment"
+    android:name="pl.edu.pk.mobile.tourtool.fragments.LoginFragment"
     android:label="@string/loginFragmentLabel">
 
-    <action
-      android:id="@+id/action_to_logged_in_fragment"
-      app:destination="@id/logged_in_fragment" />
-    <action
-      android:id="@+id/action_to_sign_up_fragment"
-      app:destination="@id/sign_up_fragment" />
-  </fragment>
-
-  <fragment
-    android:id="@+id/logged_in_fragment"
-    android:name="pl.edu.pk.mobile.tourtool.fragment.loggedin.LoggedInFragment"
-    android:label="@string/tour_tool"
-    >
-
-  </fragment>
-
-  <fragment
-    android:id="@+id/sign_up_fragment"
-    android:name="pl.edu.pk.mobile.tourtool.fragment.signup.SignUpFragment"
-
-    >
-
-    <action
-      android:id="@+id/action_to_loginFragment"
-      app:destination="@id/loginFragment" />
   </fragment>
 
 </navigation>
