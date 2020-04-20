@@ -37,6 +37,10 @@ android {
   kotlinOptions {
     jvmTarget = "1.8"
   }
+
+  packagingOptions {
+    exclude 'META-INF/DEPENDENCIES'
+  }
 }
 
 dependencies {
@@ -90,4 +94,7 @@ dependencies {
 
   // debugImplementation because LeakCanary should only run in debug builds.
   debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.2'
+
+  //WireMock
+  androidTestImplementation "com.github.tomakehurst:wiremock-standalone:2.26.3"
 }
