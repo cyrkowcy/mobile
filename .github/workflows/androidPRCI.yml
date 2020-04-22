@@ -21,7 +21,7 @@ jobs:
       run: chmod +x gradlew && ./gradlew clean ktlintCheck --no-daemon
       
     - name: "Run Unit Tests"
-      run: chmod +x gradlew && ./gradlew clean checko
+      run: chmod +x gradlew && ./gradlew clean check
 
     - name: "Run UI Tests"
       uses: vgaidarji/android-github-actions-emulator@v1.0.1
