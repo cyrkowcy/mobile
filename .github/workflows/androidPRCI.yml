@@ -1,8 +1,6 @@
 name: Android PR CI
 
 on:
-  push:
-    branches: [ master ]
   pull_request:
     branches: [ master ]
 
@@ -22,6 +20,3 @@ jobs:
       
     - name: "Run Unit Tests"
       run: chmod +x gradlew && ./gradlew clean check
-
-    - name: "Run UI Tests"
-      uses: vgaidarji/android-github-actions-emulator@v1.0.1
