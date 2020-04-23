@@ -9,11 +9,13 @@ import javax.inject.Singleton
 import pl.edu.pk.mobile.tourtool.TourToolApplication
 import pl.edu.pk.mobile.tourtool.di.module.ApplicationModule
 import pl.edu.pk.mobile.tourtool.di.module.LoginModule
+import pl.edu.pk.mobile.tourtool.di.module.RetrofitModule
 
 @Singleton
 @Component(
   modules = [
     ApplicationModule::class,
+    RetrofitModule::class,
     AndroidSupportInjectionModule::class,
     LoginModule::class
   ]

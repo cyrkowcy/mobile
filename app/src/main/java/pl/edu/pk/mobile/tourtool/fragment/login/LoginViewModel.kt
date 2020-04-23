@@ -6,8 +6,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import javax.inject.Inject
 import kotlinx.coroutines.launch
-import pl.edu.pk.mobile.tourtool.service.model.Email
-import pl.edu.pk.mobile.tourtool.service.model.Password
 import pl.edu.pk.mobile.tourtool.service.repositories.UserRepository
 import pl.edu.pk.mobile.tourtool.service.repositories.WrongCredentialsException
 import pl.edu.pk.mobile.tourtool.util.Event
@@ -48,8 +46,8 @@ class LoginViewModel @Inject constructor(
       try {
         _dataLoading.postValue(true)
         userRepository.validateCredentials(
-          Email(email.value.toString()),
-          Password(password.value.toString())
+          email.value.toString(),
+          password.value.toString()
         )
         _loginSuccess.value = Event(true)
         _dataLoading.postValue(false)

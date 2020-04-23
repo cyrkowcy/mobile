@@ -30,7 +30,7 @@ class LoginViewModelTest {
 
   @Before
   fun setupViewModel() {
-    userRepository = MockUserRepository
+    userRepository = MockUserRepository()
     loginViewModel = LoginViewModel(userRepository)
   }
 
