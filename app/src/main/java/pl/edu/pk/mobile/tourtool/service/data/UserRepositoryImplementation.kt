@@ -2,20 +2,28 @@ package pl.edu.pk.mobile.tourtool.service.data
 
 import javax.inject.Inject
 import javax.inject.Singleton
-import kotlinx.coroutines.delay
+import pl.edu.pk.mobile.tourtool.retrofit.Webservice
 import pl.edu.pk.mobile.tourtool.service.model.JWT
 import pl.edu.pk.mobile.tourtool.service.model.User
 import pl.edu.pk.mobile.tourtool.service.repositories.UserRepository
-import pl.edu.pk.mobile.tourtool.service.repositories.WrongCredentialsException
 
 @Singleton
-class MockUserRepository @Inject constructor() : UserRepository {
+class UserRepositoryImplementation @Inject constructor() : UserRepository {
+  @Inject
+  lateinit var webservice: Webservice
   override suspend fun validateCredentials(email: String, password: String): JWT {
-    delay(5000)
-    return if (email == "test@test.test" && password == "secret123")
-      JWT("token123")
-    else
-      throw WrongCredentialsException("Wrong credentials")
+    TODO("Not yet implemented")
+//    lateinit var data: JWT
+//
+//    webservice.login(email, password).enqueue(object : Callback<JWT> {
+//      override fun onResponse(call: Call<JWT>, response: Response<JWT>) {
+//        data = response.body() ?: JWT("")
+//      }
+//      override fun onFailure(call: Call<JWT>, t: Throwable) {
+//        Log.e("USER_REPOSITORY", t.message ?: "Undefined error")
+//      }
+//    })
+//    return data
   }
 
   override suspend fun getUser(token: JWT): User {
