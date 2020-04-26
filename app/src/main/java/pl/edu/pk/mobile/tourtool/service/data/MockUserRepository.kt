@@ -22,7 +22,7 @@ object MockUserRepository : UserRepository {
   }
 
   override suspend fun createUser(user: User) {
-    TODO("Not yet implemented")
+
   }
 
   override suspend fun updateUser(user: User, token: JWT) {
