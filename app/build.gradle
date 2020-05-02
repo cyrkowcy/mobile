@@ -63,6 +63,16 @@ dependencies {
   implementation 'androidx.navigation:navigation-ui-ktx:2.2.2'
   implementation "androidx.recyclerview:recyclerview:$recycler_view_version"
 
+  //Espresso
+  def androidx_test_espresso = "3.1.0"
+  androidTestImplementation "androidx.test.espresso-espress-core:$androidx_test_espresso"
+
+  //androidx.test
+  def androidx_test = "1.1.0"
+  androidTestImplementation "androidx.test:runner:$androidx_test"
+  androidTestImplementation "androidx.test:core:$androidx_test"
+  androidTestImplementation "androidx.test.ext:junit-ktx:$androidx_test"
+
   // Dependencies for local unit tests
   testImplementation "junit:junit:$junit_version"
   testImplementation "org.mockito:mockito-core:$mockito_version"
