@@ -29,7 +29,6 @@ class SignUpFragment : Fragment() {
   override fun onActivityCreated(savedInstanceState: Bundle?) {
     super.onActivityCreated(savedInstanceState)
     viewModel = ViewModelProviders.of(this).get(SignUpViewModel::class.java)
-    // TODO: Use the ViewModel
   }
   private fun setupLoginBtn(){
     activity?.findViewById<Button>(R.id.signup_login_btn)?.let{

@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
+import pl.edu.pk.mobile.tourtool.service.data.MockUserRepository
 import pl.edu.pk.mobile.tourtool.service.model.User
 import pl.edu.pk.mobile.tourtool.service.repositories.UserRepository
 import pl.edu.pk.mobile.tourtool.service.repositories.WrongCredentialsException
@@ -14,7 +15,6 @@ import javax.inject.Inject
 class SignUpViewModel @Inject constructor(
   val userRepository: UserRepository
 ): ViewModel() {
-  // TODO: Implement the ViewModel
   // Two-way databinding, exposing MutableLiveData
   val firstName = MutableLiveData<String>()
   private val _firstName = String()
@@ -47,9 +47,8 @@ class SignUpViewModel @Inject constructor(
       viewModelScope.launch {
         try{
           _dataLoading.postValue(true)
-          userRepository.createUser(
-
-          )
+            MockUserRepository.createUser(
+            )
           _signupSuccess.value = Event(true)
           _dataLoading.postValue(false)
         } catch (e: WrongCredentialsException){

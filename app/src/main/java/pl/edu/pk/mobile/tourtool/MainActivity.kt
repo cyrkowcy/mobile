@@ -1,7 +1,6 @@
 package pl.edu.pk.mobile.tourtool
 
 import android.os.Bundle
-import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController

@@ -22,7 +22,6 @@ object MockUserRepository : UserRepository {
   }
 
   override suspend fun createUser(user: User) {
-
   }
 
   override suspend fun updateUser(user: User, token: JWT) {
