@@ -5,7 +5,9 @@ import dagger.Provides
 import javax.inject.Singleton
 import kotlinx.coroutines.Dispatchers
 import pl.edu.pk.mobile.tourtool.service.data.MockUserRepository
+import pl.edu.pk.mobile.tourtool.service.repositories.SharedPreferencesRepository
 import pl.edu.pk.mobile.tourtool.service.repositories.UserRepository
+import pl.edu.pk.mobile.tourtool.util.SharedPreferencesHolder
 
 @Module(
   includes = [
@@ -29,6 +31,12 @@ object ApplicationModule {
   @Provides
   fun provideUserRepository(mockUserRepository: MockUserRepository): UserRepository =
     mockUserRepository
+
+  @JvmStatic
+  @Singleton
+  @Provides
+  fun provideSharedPreferencesHolder(tokenHolder: SharedPreferencesHolder): SharedPreferencesRepository =
+    tokenHolder
 }
 
 @Module

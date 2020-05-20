@@ -6,12 +6,16 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import javax.inject.Inject
 import kotlinx.coroutines.launch
+import pl.edu.pk.mobile.tourtool.service.model.Email
+import pl.edu.pk.mobile.tourtool.service.model.Password
 import pl.edu.pk.mobile.tourtool.service.repositories.UserRepository
 import pl.edu.pk.mobile.tourtool.service.repositories.WrongCredentialsException
 import pl.edu.pk.mobile.tourtool.util.Event
+import pl.edu.pk.mobile.tourtool.util.SharedPreferencesHolder
 
 class LoginViewModel @Inject constructor(
-  val userRepository: UserRepository
+  private val userRepository: UserRepository,
+  private val sharedPreferencesHolder: SharedPreferencesHolder
 ) : ViewModel() {
 
   // Two-way databinding, exposing MutableLiveData
@@ -34,21 +38,29 @@ class LoginViewModel @Inject constructor(
   val toastMessage: LiveData<Event<String>> = _toastMessage
 
   fun verifyUser() {
-    if (this.email.value.isNullOrBlank()) {
+    val emailVal = this.email.value
+    val passwordVal = this.password.value
+    if (emailVal.isNullOrBlank()) {
       _toastMessage.value = Event("Enter email")
       return
     }
-    if (this.password.value.isNullOrBlank()) {
+    if (passwordVal.isNullOrBlank()) {
       _toastMessage.value = Event("Enter password")
       return
     }
     viewModelScope.launch {
       try {
         _dataLoading.postValue(true)
-        userRepository.validateCredentials(
-          email.value.toString(),
-          password.value.toString()
+
+        val token = userRepository.validateCredentials(
+          emailVal.toString(),
+          passwordVal.toString()
         )
+
+        sharedPreferencesHolder.setToken(token)
+        sharedPreferencesHolder.setEmail(Email(emailVal))
+        sharedPreferencesHolder.setPassword(Password(passwordVal))
+
         _loginSuccess.value = Event(true)
         _dataLoading.postValue(false)
       } catch (e: WrongCredentialsException) {
