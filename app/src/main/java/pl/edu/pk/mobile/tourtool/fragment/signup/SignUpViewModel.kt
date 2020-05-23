@@ -5,7 +5,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
-import pl.edu.pk.mobile.tourtool.service.data.MockUserRepository
 import pl.edu.pk.mobile.tourtool.service.model.User
 import pl.edu.pk.mobile.tourtool.service.repositories.UserRepository
 import pl.edu.pk.mobile.tourtool.service.repositories.WrongCredentialsException
@@ -47,8 +46,9 @@ class SignUpViewModel @Inject constructor(
       viewModelScope.launch {
         try{
           _dataLoading.postValue(true)
-            MockUserRepository.createUser(
-            )
+          userRepository.createUser(
+           user = User(firstName.value.toString(), lastName.value.toString(), email.value.toString(), password.value.toString())
+          )
           _signupSuccess.value = Event(true)
           _dataLoading.postValue(false)
         } catch (e: WrongCredentialsException){
