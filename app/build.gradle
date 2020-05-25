@@ -101,6 +101,9 @@ dependencies {
   // WireMock
   androidTestImplementation "com.github.tomakehurst:wiremock-standalone:2.26.3"
 
+  // JWT for android
+  implementation "com.auth0.android:jwtdecode:$jwt_version"
+
   // Retrofit
   implementation group: 'com.google.code.gson', name: 'gson', version: gson_version
   implementation group: 'com.squareup.retrofit2', name: 'converter-gson', version: retrofit_version
