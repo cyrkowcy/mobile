@@ -30,14 +30,14 @@ class SignUpFragment : Fragment() {
     super.onActivityCreated(savedInstanceState)
     viewModel = ViewModelProviders.of(this).get(SignUpViewModel::class.java)
   }
-  private fun setupLoginBtn(){
-    activity?.findViewById<Button>(R.id.signup_login_btn)?.let{
+  private fun setupLoginBtn() {
+    activity?.findViewById<Button>(R.id.signup_login_btn)?.let {
       it.setOnClickListener {
         navigateLogin()
       }
     }
   }
-  private fun navigateLogin(){
+  private fun navigateLogin() {
     val action =
       SignUpFragmentDirections.actionToLoginFragment()
     findNavController().navigate(action)
