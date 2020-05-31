@@ -4,14 +4,22 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.auth0.android.jwt.JWT
 import javax.inject.Inject
 import kotlinx.coroutines.launch
+<<<<<<< HEAD
+=======
+import pl.edu.pk.mobile.tourtool.service.model.Email
+import pl.edu.pk.mobile.tourtool.service.model.Password
+import pl.edu.pk.mobile.tourtool.service.repositories.SharedPreferencesRepository
+>>>>>>> master
 import pl.edu.pk.mobile.tourtool.service.repositories.UserRepository
 import pl.edu.pk.mobile.tourtool.service.repositories.WrongCredentialsException
 import pl.edu.pk.mobile.tourtool.util.Event
 
 class LoginViewModel @Inject constructor(
-  val userRepository: UserRepository
+  private val userRepository: UserRepository,
+  private val sharedPreferencesHolder: SharedPreferencesRepository
 ) : ViewModel() {
 
   // Two-way databinding, exposing MutableLiveData
@@ -34,21 +42,33 @@ class LoginViewModel @Inject constructor(
   val toastMessage: LiveData<Event<String>> = _toastMessage
 
   fun verifyUser() {
-    if (this.email.value.isNullOrBlank()) {
+    val emailVal = this.email.value
+    val passwordVal = this.password.value
+    if (emailVal.isNullOrBlank()) {
       _toastMessage.value = Event("Enter email")
       return
     }
-    if (this.password.value.isNullOrBlank()) {
+    if (passwordVal.isNullOrBlank()) {
       _toastMessage.value = Event("Enter password")
       return
     }
     viewModelScope.launch {
       try {
         _dataLoading.postValue(true)
+<<<<<<< HEAD
         userRepository.validateCredentials(
           email.value.toString(),
           password.value.toString()
+=======
+
+        val token = userRepository.validateCredentials(
+          emailVal.toString(),
+          passwordVal.toString()
+>>>>>>> master
         )
+
+        updateSharedPreferences(token, Email(emailVal), Password(passwordVal))
+
         _loginSuccess.value = Event(true)
         _dataLoading.postValue(false)
       } catch (e: WrongCredentialsException) {
@@ -56,5 +76,11 @@ class LoginViewModel @Inject constructor(
         _toastMessage.value = Event(e.message.toString())
       }
     }
+  }
+
+  private fun updateSharedPreferences(token: JWT, email: Email, password: Password) {
+    sharedPreferencesHolder.setToken(token)
+    sharedPreferencesHolder.setEmail(email)
+    sharedPreferencesHolder.setPassword(password)
   }
 }

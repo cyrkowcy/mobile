@@ -1,9 +1,16 @@
 package pl.edu.pk.mobile.tourtool.service.data
 
+<<<<<<< HEAD
 import javax.inject.Inject
 import javax.inject.Singleton
 import kotlinx.coroutines.delay
 import pl.edu.pk.mobile.tourtool.service.model.JWT
+=======
+import com.auth0.android.jwt.JWT
+import javax.inject.Inject
+import javax.inject.Singleton
+import kotlinx.coroutines.delay
+>>>>>>> master
 import pl.edu.pk.mobile.tourtool.service.model.User
 import pl.edu.pk.mobile.tourtool.service.repositories.UserRepository
 import pl.edu.pk.mobile.tourtool.service.repositories.WrongCredentialsException
@@ -13,7 +20,13 @@ class MockUserRepository @Inject constructor() : UserRepository {
   override suspend fun validateCredentials(email: String, password: String): JWT {
     delay(5000)
     return if (email == "test@test.test" && password == "secret123")
+<<<<<<< HEAD
       JWT("token123")
+=======
+      JWT(
+        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0Ijox" +
+          "NTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c")
+>>>>>>> master
     else
       throw WrongCredentialsException("Wrong credentials")
   }

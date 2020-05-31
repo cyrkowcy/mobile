@@ -1,7 +1,11 @@
 package pl.edu.pk.mobile.tourtool.service.repositories
 
+import com.auth0.android.jwt.JWT
 import java.lang.Exception
+<<<<<<< HEAD
 import pl.edu.pk.mobile.tourtool.service.model.JWT
+=======
+>>>>>>> master
 import pl.edu.pk.mobile.tourtool.service.model.User
 
 interface UserRepository {

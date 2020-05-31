@@ -1,9 +1,16 @@
 package pl.edu.pk.mobile.tourtool.service.data
 
+<<<<<<< HEAD
 import javax.inject.Inject
 import javax.inject.Singleton
 import pl.edu.pk.mobile.tourtool.retrofit.Webservice
 import pl.edu.pk.mobile.tourtool.service.model.JWT
+=======
+import com.auth0.android.jwt.JWT
+import javax.inject.Inject
+import javax.inject.Singleton
+import pl.edu.pk.mobile.tourtool.retrofit.Webservice
+>>>>>>> master
 import pl.edu.pk.mobile.tourtool.service.model.User
 import pl.edu.pk.mobile.tourtool.service.repositories.UserRepository
 

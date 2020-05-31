@@ -1,6 +1,10 @@
 package pl.edu.pk.mobile.tourtool.retrofit
 
+<<<<<<< HEAD
 import pl.edu.pk.mobile.tourtool.service.model.JWT
+=======
+import com.auth0.android.jwt.JWT
+>>>>>>> master
 import retrofit2.Call
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
