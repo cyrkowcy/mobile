@@ -8,4 +8,7 @@
   <string name="sign_in">Sign-in</string>
   <string name="wait_message">Please wait</string>
   <string name="tour_tool">TourTool</string>
+  <string name="signup">Sign Up</string>
+  <string name="firstname">Firstname</string>
+  <string name="lastname">Lastname</string>
 </resources>
