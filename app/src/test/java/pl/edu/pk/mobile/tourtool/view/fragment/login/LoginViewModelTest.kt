@@ -34,15 +34,11 @@ class LoginViewModelTest {
   @Before
   fun setupViewModel() {
     userRepository = MockUserRepository()
-<<<<<<< HEAD
-    loginViewModel = LoginViewModel(userRepository)
-=======
 
     // fixme create SharedPreferencesMock
     sharedPreferences = SharedPreferencesHolder(Mockito.mock(Context::class.java))
 
     loginViewModel = LoginViewModel(userRepository, sharedPreferences)
->>>>>>> master
   }
 
   @Test
