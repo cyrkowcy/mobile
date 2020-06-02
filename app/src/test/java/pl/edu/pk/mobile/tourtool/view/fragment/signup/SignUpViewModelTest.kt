@@ -4,7 +4,6 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.google.common.truth.Truth.assertThat
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runBlockingTest
-
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -33,7 +32,7 @@ class SignUpViewModelTest {
   }
 
   @Test
-  fun shouldAllowToSignUpWithAppropriateCredentials(){
+  fun shouldAllowToSignUpWithAppropriateCredentials() {
     // given
     signUpViewModel.firstName.postValue("admin")
     signUpViewModel.lastName.postValue("admin")

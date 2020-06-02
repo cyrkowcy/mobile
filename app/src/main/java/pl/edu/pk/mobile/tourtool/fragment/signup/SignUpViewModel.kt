@@ -4,16 +4,16 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import javax.inject.Inject
 import kotlinx.coroutines.launch
 import pl.edu.pk.mobile.tourtool.service.model.User
 import pl.edu.pk.mobile.tourtool.service.repositories.UserRepository
 import pl.edu.pk.mobile.tourtool.service.repositories.WrongCredentialsException
 import pl.edu.pk.mobile.tourtool.util.Event
-import javax.inject.Inject
 
 class SignUpViewModel @Inject constructor(
   val userRepository: UserRepository
-): ViewModel() {
+) : ViewModel() {
   // Two-way databinding, exposing MutableLiveData
   val firstName = MutableLiveData<String>()
   private val _firstName = String()
@@ -38,20 +38,21 @@ class SignUpViewModel @Inject constructor(
   private val _signupSuccess = MutableLiveData<Event<Boolean>>()
   val signupSuccess: LiveData<Event<Boolean>> = _signupSuccess
 
-  fun signupUser(){
-      if(this.email.value.isNullOrEmpty() || this.password.value.isNullOrEmpty()){
+  fun signupUser() {
+      if (this.email.value.isNullOrEmpty() || this.password.value.isNullOrEmpty()) {
         _toastMessage.value = Event("Invalid email or password")
         return
       }
       viewModelScope.launch {
-        try{
+        try {
           _dataLoading.postValue(true)
           userRepository.createUser(
-           user = User(firstName.value.toString(), lastName.value.toString(), email.value.toString(), password.value.toString())
+            user = User(firstName.value.toString(), lastName.value.toString(), email.value.toString(),
+            password.value.toString())
           )
           _signupSuccess.value = Event(true)
           _dataLoading.postValue(false)
-        } catch (e: WrongCredentialsException){
+        } catch (e: WrongCredentialsException) {
           _dataLoading.postValue(false)
           _toastMessage.value = Event(e.message.toString())
         }
