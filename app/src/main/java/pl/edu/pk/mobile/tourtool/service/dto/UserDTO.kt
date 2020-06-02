@@ -3,16 +3,21 @@ package pl.edu.pk.mobile.tourtool.service.dto
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 
-data class CredentialsDTO(
+data class UserDTO(
+  @SerializedName("firstName")
+  @Expose
+  val firstName: String,
+  @SerializedName("lastName")
+  @Expose
+  val lastName: String,
   @SerializedName("email")
   @Expose
   val email: String,
   @SerializedName("password")
   @Expose
   val password: String
-
 ) {
   override fun toString(): String {
-    return "CredentialsDTO(email='$email', password='$password')"
+    return "UserDTO(firstName='$firstName', lastName='$lastName', email='$email', password='$password')"
   }
 }
