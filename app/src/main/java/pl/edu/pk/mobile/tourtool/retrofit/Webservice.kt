@@ -1,18 +1,14 @@
 package pl.edu.pk.mobile.tourtool.retrofit
 
 import com.auth0.android.jwt.JWT
+import pl.edu.pk.mobile.tourtool.service.dto.CredentialsDTO
 import retrofit2.Call
-import retrofit2.http.Field
-import retrofit2.http.FormUrlEncoded
+import retrofit2.http.Body
 import retrofit2.http.POST
 
 interface Webservice {
-  @POST("/login")
-  @FormUrlEncoded
+  @POST("login")
   fun login(
-    @Field("email")
-    email: String,
-    @Field("password")
-    password: String
+    @Body credentialsDTO: CredentialsDTO
   ): Call<JWT>
 }

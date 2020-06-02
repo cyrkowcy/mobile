@@ -20,7 +20,7 @@ class MockUserRepository @Inject constructor() : UserRepository {
       throw WrongCredentialsException("Wrong credentials")
   }
 
-  override suspend fun getUser(token: JWT): User {
+  override suspend fun getUser(): User {
     TODO("Not yet implemented")
   }
 
@@ -28,7 +28,7 @@ class MockUserRepository @Inject constructor() : UserRepository {
     TODO("Not yet implemented")
   }
 
-  override suspend fun updateUser(user: User, token: JWT) {
+  override suspend fun updateUser(user: User) {
     TODO("Not yet implemented")
   }
 }
