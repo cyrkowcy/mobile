@@ -39,8 +39,12 @@ class SignUpViewModel @Inject constructor(
   val signupSuccess: LiveData<Event<Boolean>> = _signupSuccess
 
   fun signupUser() {
-      if (this.email.value.isNullOrEmpty() || this.password.value.isNullOrEmpty()) {
-        _toastMessage.value = Event("Invalid email or password")
+      if (this.email.value.isNullOrBlank()) {
+        _toastMessage.value = Event("Enter email")
+        return
+      }
+      if (this.password.value.isNullOrBlank()) {
+        _toastMessage.value = Event("Enter password")
         return
       }
       viewModelScope.launch {
