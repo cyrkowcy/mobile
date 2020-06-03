@@ -5,6 +5,8 @@ import dagger.Provides
 import javax.inject.Singleton
 import okhttp3.OkHttpClient
 import pl.edu.pk.mobile.tourtool.retrofit.Webservice
+import pl.edu.pk.mobile.tourtool.service.interceptor.TokenInterceptor
+import pl.edu.pk.mobile.tourtool.util.SharedPreferencesHolder
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
@@ -25,7 +27,7 @@ object RetrofitModule {
   @Provides
   fun getRetrofit(okHttpClient: OkHttpClient): Retrofit =
     Retrofit.Builder()
-      .baseUrl("http://188.68.236.128/api/")
+      .baseUrl("http://149.156.146.249:60001/api/")
       .addConverterFactory(GsonConverterFactory.create())
       .client(okHttpClient)
       .build()
@@ -33,11 +35,23 @@ object RetrofitModule {
   @JvmStatic
   @Singleton
   @Provides
-  fun getOkHttpClient(): OkHttpClient =
-    OkHttpClient.Builder()
+  fun getOkHttpClient(
+    tokenInterceptor: TokenInterceptor
+  ): OkHttpClient {
+    val okHttpBuilder = OkHttpClient()
+      .newBuilder()
+    return okHttpBuilder
+      .addInterceptor(tokenInterceptor)
       .build()
+  }
 
-//  todo: Implement it later
+  @JvmStatic
+  @Singleton
+  @Provides
+  fun provideTokenInterceptor(sharedPreferencesHolder: SharedPreferencesHolder): TokenInterceptor =
+    TokenInterceptor(sharedPreferencesHolder)
+
+//  //  todo: Implement it later
 //  @JvmStatic
 //  @Singleton
 //  @get:Provides
