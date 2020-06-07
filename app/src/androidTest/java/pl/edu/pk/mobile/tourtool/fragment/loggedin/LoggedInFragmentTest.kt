@@ -29,9 +29,7 @@ class LoggedInFragmentTest {
   fun unregisterIdlingResource() {
     IdlingRegistry.getInstance().unregister(EspressoIdlingResource.countingIdlingResource)
   }
-  fun makeNewUser(){
 
-  }
   @Test
   fun test_is_login_message_displayed() {
 
