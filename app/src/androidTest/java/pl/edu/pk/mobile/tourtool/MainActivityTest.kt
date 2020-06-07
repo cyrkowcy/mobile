@@ -1,7 +1,9 @@
 package pl.edu.pk.mobile.tourtool
 
+
 import androidx.test.core.app.ActivityScenario
 import androidx.test.espresso.Espresso.onView
+import androidx.test.espresso.assertion.ViewAssertions.doesNotExist
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.ext.junit.rules.ActivityScenarioRule
@@ -57,4 +59,9 @@ class MainActivityTest{
     onView(withId(R.id.login_signin_btn)).check(matches(withText(R.string.sign_in)))
 
   }
+  @Test
+  fun test_is_progress_bar_hidden(){
+    onView(withId(R.id.progressBar)).check(matches(withEffectiveVisibility(Visibility.GONE)))
+  }
+
 }
