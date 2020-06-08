@@ -1,14 +1,25 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
-
 buildscript {
-
   ext {
+    android_material_version = '1.1.0'
+    androidX_constrainlayout_version = '1.1.3'
+    androidX_core_version = '1.2.0'
+    androidX_legacy_support_version = '1.0.0'
+    androidX_lifecycle_extensions_version = '2.2.0'
+    androidX_lifecycle_viewmodel_ktx_version = '2.2.0'
+    androidX_navigation_fragment_version = '2.2.2'
+    androidX_navigation_ui_version = '2.2.2'
     androidX_test_core_version = '1.2.0'
+    androidX_test_espresso_core_version = '3.2.0'
+    androidX_test_ext_junit_version = '1.1.1'
     androidX_test_ext_kotlin_runner_version = '1.1.1'
+    androidX_test_runner_version = '1.2.0'
     androidX_test_rules_version = '1.2.0-beta01'
+    appcombat_version = '1.1.0'
     arch_testing_version = '2.0.0'
     coroutines_version = '1.2.1'
     dagger_version = '2.23.2'
+    databinding_version = '3.1.4'
     dex_maker_version = '2.12.1'
     fragment_version = '1.1.0-alpha07'
     gradle_version = '3.5.0'
@@ -17,13 +28,14 @@ buildscript {
     jwt_version = '2.0.0'
     kotlin_version = '1.3.70'
     ktlint_gradle_version = '9.2.1'
+    leakcanary_version = '2.2'
     mockito_version = '2.8.9'
     okhttp_version = '3.14.7'
     recycler_view_version = '1.0.0'
     retrofit_version = '2.8.1'
     truth_version = '0.44'
+    wiremock_version = '2.26.3'
   }
-
   repositories {
     google()
     jcenter()
@@ -40,15 +52,12 @@ buildscript {
     // in the individual module build.gradle files
   }
 }
-
 allprojects {
   repositories {
     google()
     jcenter()
-
   }
 }
-
 task clean(type: Delete) {
   delete rootProject.buildDir
 }
