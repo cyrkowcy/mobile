@@ -4,7 +4,7 @@ import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
 import kotlinx.coroutines.Dispatchers
-import pl.edu.pk.mobile.tourtool.service.data.MockUserRepository
+import pl.edu.pk.mobile.tourtool.service.data.UserRepositoryImplementation
 import pl.edu.pk.mobile.tourtool.service.repositories.SharedPreferencesRepository
 import pl.edu.pk.mobile.tourtool.service.repositories.UserRepository
 import pl.edu.pk.mobile.tourtool.util.SharedPreferencesHolder
@@ -20,17 +20,17 @@ object ApplicationModule {
   @Provides
   fun provideIoDispatcher() = Dispatchers.IO
 
-//  @JvmStatic
-//  @Singleton
-//  @Provides
-//  fun provideUserRepository(userRepositoryImplementation: UserRepositoryImplementation): UserRepository =
-//    userRepositoryImplementation
-
   @JvmStatic
   @Singleton
   @Provides
-  fun provideUserRepository(mockUserRepository: MockUserRepository): UserRepository =
-    mockUserRepository
+  fun provideUserRepository(userRepositoryImplementation: UserRepositoryImplementation): UserRepository =
+    userRepositoryImplementation
+
+//  @JvmStatic
+//  @Singleton
+//  @Provides
+//  fun provideUserRepository(mockUserRepository: MockUserRepository): UserRepository =
+//    mockUserRepository
 
   @JvmStatic
   @Singleton
