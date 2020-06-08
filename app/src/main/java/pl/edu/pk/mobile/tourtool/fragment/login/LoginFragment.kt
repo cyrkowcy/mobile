@@ -101,8 +101,8 @@ class LoginFragment : DaggerFragment() {
 
 fun DaggerFragment.hideKeyboard() {
   val focus = requireActivity().currentFocus
-  if(focus!=null) {
+  if (focus != null) {
     val input = requireActivity().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-    input.hideSoftInputFromWindow(focus.windowToken,0)
+    input.hideSoftInputFromWindow(focus.windowToken, 0)
   }
 }
