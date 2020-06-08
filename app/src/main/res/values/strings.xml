@@ -1,12 +1,12 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
   <string name="app_name">TourTool</string>
-  <string name="action_settings">Settings</string>
+  <string name="action_settings" tools:keep="@string/action_settings">Settings</string>
   <string name="loginFragmentLabel">TourTool - login</string>
   <string name="login_e_mail">E-mail</string>
   <string name="log_in">Log-in</string>
   <string name="password">Password</string>
   <string name="sign_in">Sign-in</string>
-  <string name="wait_message">Please wait</string>
+  <string name="wait_message" tools:keep="@string/wait_message">Please wait</string>
   <string name="tour_tool">TourTool</string>
   <string name="signup">Sign Up</string>
   <string name="firstname">Firstname</string>

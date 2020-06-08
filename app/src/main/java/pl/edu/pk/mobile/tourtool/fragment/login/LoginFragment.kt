@@ -57,7 +57,7 @@ class LoginFragment : DaggerFragment() {
         Toast.makeText(this.context, message, Toast.LENGTH_LONG).show()
       }
     })
-    viewModel.loginSuccess.observe(viewLifecycleOwner, Observer {
+    viewModel.loginSuccess.observe(viewLifecycleOwner, Observer { it ->
       it.getContentIfNotHandled()?.let {
         if (it) {
           navigateToLoggedIn()

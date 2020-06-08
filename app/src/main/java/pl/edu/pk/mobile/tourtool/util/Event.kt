@@ -1,8 +1,7 @@
 package pl.edu.pk.mobile.tourtool.util
 
 open class Event<out T>(private val content: T) {
-  var hasBeenHandled = false
-    private set
+  private var hasBeenHandled = false
 
   /**
    * Returns the content and prevents its being used again.
@@ -14,9 +13,4 @@ open class Event<out T>(private val content: T) {
       hasBeenHandled = true
       content
     }
-
-  /**
-   * Returns the content, even if it's already been handled.
-   */
-  fun peakContent(): T = content
 }

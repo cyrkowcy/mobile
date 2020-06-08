@@ -17,8 +17,8 @@ class TokenInterceptor constructor(
 
     val original = chain.request()
 
-    return if (original.url().encodedPath().contains("/login") && original.method().equals("post") ||
-      (original.url().encodedPath().contains("/user") && original.method().equals("post"))
+    return if (original.url().encodedPath().contains("/login") && original.method() == "post" ||
+      (original.url().encodedPath().contains("/user") && original.method() == "post")
     ) {
       chain.proceed(original)
     } else {

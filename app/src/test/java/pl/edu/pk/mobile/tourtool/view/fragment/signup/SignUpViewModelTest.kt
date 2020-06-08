@@ -11,7 +11,6 @@ import pl.edu.pk.mobile.tourtool.LiveDataTestUtil.getValue
 import pl.edu.pk.mobile.tourtool.MainCoroutineRule
 import pl.edu.pk.mobile.tourtool.fragment.signup.SignUpViewModel
 import pl.edu.pk.mobile.tourtool.service.data.MockUserRepository
-import kotlin.math.sign
 
 @ExperimentalCoroutinesApi
 class SignUpViewModelTest {
@@ -51,33 +50,33 @@ class SignUpViewModelTest {
 
   @Test
   fun requiredEmailFieldIsEmpty() {
-    //given
+    // given
     signUpViewModel.firstName.postValue("Karol")
     signUpViewModel.lastName.postValue("Bolek")
     signUpViewModel.password.postValue("admin123")
 
-    //when
+    // when
     mainCoroutineRule.runBlockingTest {
       signUpViewModel.signupUser()
     }
 
-    //then
+    // then
     assertThat(getValue(signUpViewModel.toastMessage).getContentIfNotHandled()).isEqualTo("Enter email")
   }
 
   @Test
   fun requiredPasswordFieldIsEmpty() {
-    //given
+    // given
     signUpViewModel.firstName.postValue("Karol")
     signUpViewModel.lastName.postValue("Bolek")
     signUpViewModel.email.postValue("karolbolek@gmail.com")
 
-    //when
+    // when
     mainCoroutineRule.runBlockingTest {
       signUpViewModel.signupUser()
     }
 
-    //then
+    // then
     assertThat(getValue(signUpViewModel.toastMessage).getContentIfNotHandled()).isEqualTo("Enter password")
   }
 }

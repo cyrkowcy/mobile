@@ -29,7 +29,7 @@
       app:layout_constraintBottom_toTopOf="@+id/surname"
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintStart_toStartOf="parent"
-      />
+      android:inputType="textPersonName" />
     <EditText
       android:id="@+id/surname"
       android:layout_width="match_parent"
@@ -43,7 +43,7 @@
       app:layout_constraintBottom_toTopOf="@+id/signup_email"
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintStart_toStartOf="parent"
-      />
+      android:inputType="textPersonName" />
 
     <EditText
       android:id="@+id/signup_email"
@@ -80,7 +80,7 @@
     <Button
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:text="Sign Up"
+      android:text="@string/signup"
       tools:ignore="MissingConstraints"
       android:onClick="@{() -> viewmodel.signupUser()}"
       app:layout_constraintHorizontal_bias="0.498"

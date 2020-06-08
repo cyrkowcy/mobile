@@ -21,14 +21,12 @@ class LoginViewModel @Inject constructor(
 
   // Two-way databinding, exposing MutableLiveData
   val email = MutableLiveData<String>()
-  private val _email = String()
 
   // Two-way databinding, exposing MutableLiveData
   val password = MutableLiveData<String>()
-  private val _password = String()
 
   // One-way databinding, exposing only immutable LiveData
-  private val _dataLoading = MutableLiveData<Boolean>(false)
+  private val _dataLoading = MutableLiveData(false)
   val dataLoading: LiveData<Boolean> = _dataLoading
 
   // One-way databinding, exposing only immutable LiveData

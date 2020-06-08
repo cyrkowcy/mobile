@@ -8,7 +8,7 @@ class ExampleWireMockTest {
 
   @Test
   fun wireMockServerWorkingTest() {
-    var wireMockServer = WireMockServer()
+    val wireMockServer = WireMockServer()
     wireMockServer.start()
     assertNotNull(wireMockServer)
     wireMockServer.stop()

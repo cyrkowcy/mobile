@@ -12,28 +12,23 @@ import pl.edu.pk.mobile.tourtool.service.repositories.WrongCredentialsException
 import pl.edu.pk.mobile.tourtool.util.Event
 
 class SignUpViewModel @Inject constructor(
-  val userRepository: UserRepository
+  private val userRepository: UserRepository
 ) : ViewModel() {
   // Two-way databinding, exposing MutableLiveData
   val firstName = MutableLiveData<String>()
-  private val _firstName = String()
 
   val lastName = MutableLiveData<String>()
-  private val _lastName = String()
 
   val email = MutableLiveData<String>()
-  private val _email = String()
 
   // Two-way databinding, exposing MutableLiveData
   val password = MutableLiveData<String>()
-  private val _password = String()
 
   private val _toastMessage = MutableLiveData<Event<String>>()
   val toastMessage: LiveData<Event<String>> = _toastMessage
 
   // One-way databinding, exposing only immutable LiveData
-  private val _dataLoading = MutableLiveData<Boolean>(false)
-  val dataLoading: LiveData<Boolean> = _dataLoading
+  private val _dataLoading = MutableLiveData(false)
 
   private val _signupSuccess = MutableLiveData<Event<Boolean>>()
   val signupSuccess: LiveData<Event<Boolean>> = _signupSuccess
