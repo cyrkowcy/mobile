@@ -24,5 +24,5 @@ interface Webservice {
   fun postUser(@Body user: UserDTO): Call<UserResponse>
 
   @PATCH("user/{email}")
-  fun patchUser(@Body user: UserDTO)
+  fun patchUser(@Body user: UserDTO, email: String): Call<UserResponse>
 }

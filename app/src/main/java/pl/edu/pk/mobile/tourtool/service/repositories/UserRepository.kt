@@ -12,3 +12,5 @@ interface UserRepository {
 }
 
 class WrongCredentialsException(message: String) : Exception(message)
+
+class ServerResponseException(message: String) : Exception(message)
