@@ -1,9 +1,11 @@
 package pl.edu.pk.mobile.tourtool.fragment.login
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
 import android.widget.Button
 import android.widget.Toast
 import androidx.fragment.app.viewModels
@@ -49,6 +51,7 @@ class LoginFragment : DaggerFragment() {
     viewDataBinding.lifecycleOwner = this.viewLifecycleOwner
 
     setupSignUpBtn()
+    setupLoginBtn()
   }
 
   private fun subscribeViewModel() {
@@ -74,6 +77,15 @@ class LoginFragment : DaggerFragment() {
     }
   }
 
+  private fun setupLoginBtn() {
+    activity?.findViewById<Button>(R.id.login_login_btn)?.let {
+      it.setOnClickListener {
+        hideKeyboard()
+        viewModel.verifyUser()
+      }
+    }
+  }
+
   private fun navigateToSignUp() {
     val action =
       LoginFragmentDirections.actionToSignUpFragment()
@@ -84,5 +96,13 @@ class LoginFragment : DaggerFragment() {
     val action =
       LoginFragmentDirections.actionToLoggedInFragment()
     findNavController().navigate(action)
+  }
+}
+
+fun DaggerFragment.hideKeyboard() {
+  val focus = requireActivity().currentFocus
+  if(focus!=null) {
+    val input = requireActivity().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+    input.hideSoftInputFromWindow(focus.windowToken,0)
   }
 }
