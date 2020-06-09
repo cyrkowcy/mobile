@@ -3,6 +3,7 @@ package pl.edu.pk.mobile.tourtool.retrofit
 import com.auth0.android.jwt.JWT
 import pl.edu.pk.mobile.tourtool.service.dto.CredentialsDTO
 import pl.edu.pk.mobile.tourtool.service.dto.UserDTO
+import pl.edu.pk.mobile.tourtool.service.model.Email
 import pl.edu.pk.mobile.tourtool.service.model.User
 import pl.edu.pk.mobile.tourtool.service.model.UserResponse
 import retrofit2.Call
@@ -24,5 +25,5 @@ interface Webservice {
   fun postUser(@Body user: UserDTO): Call<UserResponse>
 
   @PATCH("user/{email}")
-  fun patchUser(@Body user: UserDTO, email: String): Call<UserResponse>
+  fun patchUser(@Body user: UserDTO, email: Email): Call<UserResponse>
 }
