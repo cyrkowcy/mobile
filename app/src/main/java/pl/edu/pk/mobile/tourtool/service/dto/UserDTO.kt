@@ -9,16 +9,16 @@ import pl.edu.pk.mobile.tourtool.service.model.Password
 data class UserDTO(
   @SerializedName("firstName")
   @Expose
-  val firstName: Name,
+  val firstName: String,
   @SerializedName("lastName")
   @Expose
-  val lastName: Name,
+  val lastName: String,
   @SerializedName("email")
   @Expose
-  val email: Email,
+  val email: String,
   @SerializedName("password")
   @Expose
-  val password: Password
+  val password: String
 ) {
   override fun toString(): String {
     return "UserDTO(firstName='$firstName', lastName='$lastName', email='$email', password='$password')"
