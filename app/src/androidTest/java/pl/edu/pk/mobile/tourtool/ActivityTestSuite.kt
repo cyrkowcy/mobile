@@ -11,6 +11,4 @@ import pl.edu.pk.mobile.tourtool.fragment.signup.SignUpFragmentTest
   LoggedInFragmentTest::class,
   SignUpFragmentTest::class
 )
-class ActivityTestSuite{
-
-}
+class ActivityTestSuite
