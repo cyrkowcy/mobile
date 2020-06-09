@@ -25,7 +25,9 @@ class MockUserRepository @Inject constructor() : UserRepository {
   }
 
   override suspend fun createUser(user: User) {
-    TODO("Not yet implemented")
+    // val users: List<User> = listOf(User("admin", "admin", "admin@gmail.com", "admin123"))
+    val users: List<User> = listOf(user)
+    print(users)
   }
 
   override suspend fun updateUser(user: User) {
