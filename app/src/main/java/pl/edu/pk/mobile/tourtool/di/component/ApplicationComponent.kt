@@ -10,6 +10,7 @@ import pl.edu.pk.mobile.tourtool.TourToolApplication
 import pl.edu.pk.mobile.tourtool.di.module.ApplicationModule
 import pl.edu.pk.mobile.tourtool.di.module.LoginModule
 import pl.edu.pk.mobile.tourtool.di.module.RetrofitModule
+import pl.edu.pk.mobile.tourtool.di.module.SignUpModule
 
 @Singleton
 @Component(
@@ -17,7 +18,8 @@ import pl.edu.pk.mobile.tourtool.di.module.RetrofitModule
     ApplicationModule::class,
     RetrofitModule::class,
     AndroidSupportInjectionModule::class,
-    LoginModule::class
+    LoginModule::class,
+    SignUpModule::class
   ]
 )
 interface ApplicationComponent : AndroidInjector<TourToolApplication> {
