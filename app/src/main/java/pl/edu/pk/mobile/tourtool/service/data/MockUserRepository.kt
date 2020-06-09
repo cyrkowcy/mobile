@@ -11,7 +11,9 @@ import pl.edu.pk.mobile.tourtool.service.repositories.WrongCredentialsException
 @Singleton
 class MockUserRepository @Inject constructor() : UserRepository {
   override suspend fun validateCredentials(email: String, password: String): JWT {
+
     delay(5000)
+
     return if (email == "test@test.test" && password == "secret123")
       JWT(
         "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0Ijox" +

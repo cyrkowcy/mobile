@@ -52,6 +52,7 @@ class LoginFragment : DaggerFragment() {
   }
 
   private fun subscribeViewModel() {
+
     viewModel.toastMessage.observe(viewLifecycleOwner, Observer {
       it.getContentIfNotHandled()?.let { message ->
         Toast.makeText(this.context, message, Toast.LENGTH_LONG).show()
@@ -60,6 +61,7 @@ class LoginFragment : DaggerFragment() {
     viewModel.loginSuccess.observe(viewLifecycleOwner, Observer {
       it.getContentIfNotHandled()?.let {
         if (it) {
+
           navigateToLoggedIn()
         }
       }
