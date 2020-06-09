@@ -1,8 +1,8 @@
 package pl.edu.pk.mobile.tourtool.service.model
 
 data class User(
-  val firstName: Name,
-  val lastName: Name,
-  val email: Email,
-  val password: Password
+  val firstName: String,
+  val lastName: String,
+  val email: String,
+  val password: String
 )

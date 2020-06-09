@@ -55,7 +55,7 @@ class UserRepositoryImplementation @Inject constructor() : UserRepository {
   }
 
   override suspend fun createUser(user: User) {
-    val userDTO = UserDTO(user.firstName.value, user.lastName.value, user.email.value, user.password.value)
+    val userDTO = UserDTO(user.firstName, user.lastName, user.email, user.password)
     val response = webservice.postUser(userDTO).awaitResponse()
 
     if (!response.isSuccessful) {
@@ -66,8 +66,8 @@ class UserRepositoryImplementation @Inject constructor() : UserRepository {
   }
 
   override suspend fun updateUser(user: User) {
-    val userDTO = UserDTO(user.firstName.value, user.lastName.value, user.email.value, user.password.value)
-    val response = webservice.patchUser(userDTO, user.email.value).awaitResponse()
+    val userDTO = UserDTO(user.firstName, user.lastName, user.email, user.password)
+    val response = webservice.patchUser(userDTO, user.email).awaitResponse()
 
     if (!response.isSuccessful) {
       val gson = Gson()
