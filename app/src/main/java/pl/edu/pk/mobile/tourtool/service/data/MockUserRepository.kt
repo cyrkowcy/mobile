@@ -22,15 +22,17 @@ class MockUserRepository @Inject constructor() : UserRepository {
       throw WrongCredentialsException("Wrong credentials")
   }
 
-  override suspend fun getUser(token: JWT): User {
+  override suspend fun getUser(): User {
     TODO("Not yet implemented")
   }
 
   override suspend fun createUser(user: User) {
-    TODO("Not yet implemented")
+    // val users: List<User> = listOf(User("admin", "admin", "admin@gmail.com", "admin123"))
+    val users: List<User> = listOf(user)
+    print(users)
   }
 
-  override suspend fun updateUser(user: User, token: JWT) {
+  override suspend fun updateUser(user: User) {
     TODO("Not yet implemented")
   }
 }
