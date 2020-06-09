@@ -2,9 +2,6 @@ package pl.edu.pk.mobile.tourtool.service.dto
 
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
-import pl.edu.pk.mobile.tourtool.service.model.Email
-import pl.edu.pk.mobile.tourtool.service.model.Name
-import pl.edu.pk.mobile.tourtool.service.model.Password
 
 data class UserDTO(
   @SerializedName("firstName")
