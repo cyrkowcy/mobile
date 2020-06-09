@@ -28,8 +28,7 @@ class MainActivityTest {
 
     onView(withId(R.id.nav_host_fragment)).check(matches(isDisplayed()))
 
-    //onView(withId(R.id.nav_view)).check(matches(isDisplayed()))
-
+    // onView(withId(R.id.nav_view)).check(matches(isDisplayed()))
   }
 
   @Test
