@@ -65,13 +65,11 @@ class LoginViewModel @Inject constructor(
 
         _loginSuccess.value = Event(true)
         _dataLoading.postValue(false)
-
       } catch (e: WrongCredentialsException) {
         _dataLoading.postValue(false)
         _toastMessage.value = Event(e.message.toString())
       }
       EspressoIdlingResource.decrement()
-
     }
   }
 

@@ -34,7 +34,7 @@ class LoggedInFragmentTest {
   fun test_is_login_message_displayed() {
 
     val activityScenario = ActivityScenario.launch(MainActivity::class.java)
-    //nowy user
+    // nowy user
     onView(withId(R.id.login_signin_btn)).perform(click())
     onView(withId(R.id.name)).perform(typeText("Jan"))
     onView(withId(R.id.surname)).perform(typeText("Kowalski"))
@@ -45,7 +45,7 @@ class LoggedInFragmentTest {
     onView(withId(R.id.signup_signup_btn)).perform(click())
     Espresso.pressBack()
 
-    //logowanie
+    // logowanie
     onView(withId(R.id.login_email)).perform(typeText("jankowalski@gmail.com"))
     Espresso.pressBack()
     onView(withId(R.id.login_password)).perform(typeText("secret123"))
@@ -69,5 +69,4 @@ class LoggedInFragmentTest {
     onView(withId(R.id.login_password)).check(matches(isDisplayed()))
     onView(withId(R.id.login_login_btn)).check(matches(isDisplayed()))
   }
-
 }
