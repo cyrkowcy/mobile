@@ -22,16 +22,16 @@ class SignUpFragmentTest {
     val activityScenario = ActivityScenario.launch(MainActivity::class.java)
     onView(withId(R.id.login_signin_btn)).perform(click())
 
-    onView(withId(R.id.textView3)).check(matches(isDisplayed()))
-    onView(withId(R.id.textView3)).check(matches(withText("Sign up NOW!!!")))
+    onView(withId(R.id.signup_signup_btn)).check(matches(isDisplayed()))
+    //onView(withId(R.id.signup_signup_btn)).check(matches(withText("Sign up NOW!!!")))
   }
   @Test
   fun test_is_back_button_working() {
     val activityScenario = ActivityScenario.launch(MainActivity::class.java)
     onView(withId(R.id.login_signin_btn)).perform(click())
 
-    onView(withId(R.id.textView3)).check(matches(isDisplayed()))
-    onView(withId(R.id.textView3)).check(matches(withText("Sign up NOW!!!")))
+    onView(withId(R.id.signup_signup_btn)).check(matches(isDisplayed()))
+   // onView(withId(R.id.signup_signup_btn)).check(matches(withText("Sign up NOW!!!")))
 
     Espresso.pressBack()
 

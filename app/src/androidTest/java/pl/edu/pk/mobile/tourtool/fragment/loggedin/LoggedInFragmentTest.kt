@@ -29,12 +29,26 @@ class LoggedInFragmentTest {
   fun unregisterIdlingResource() {
     IdlingRegistry.getInstance().unregister(EspressoIdlingResource.countingIdlingResource)
   }
+  fun makeNewUser(){
 
+  }
   @Test
   fun test_is_login_message_displayed() {
 
     val activityScenario = ActivityScenario.launch(MainActivity::class.java)
-    onView(withId(R.id.login_email)).perform(typeText("test@test.test"))
+    //nowy user
+    onView(withId(R.id.login_signin_btn)).perform(click())
+    onView(withId(R.id.name)).perform(typeText("Jan"))
+    onView(withId(R.id.surname)).perform(typeText("Kowalski"))
+    onView(withId(R.id.signup_email)).perform(typeText("jankowalski@gmail.com"))
+    Espresso.pressBack()
+    onView(withId(R.id.password)).perform(typeText("secret123"))
+    Espresso.pressBack()
+    onView(withId(R.id.signup_signup_btn)).perform(click())
+    Espresso.pressBack()
+
+    //logowanie
+    onView(withId(R.id.login_email)).perform(typeText("jankowalski@gmail.com"))
     Espresso.pressBack()
     onView(withId(R.id.login_password)).perform(typeText("secret123"))
     Espresso.pressBack()
@@ -57,23 +71,5 @@ class LoggedInFragmentTest {
     onView(withId(R.id.login_password)).check(matches(isDisplayed()))
     onView(withId(R.id.login_login_btn)).check(matches(isDisplayed()))
   }
-  @Test
-  fun test_is_back_button_working() {
-    val activityScenario = ActivityScenario.launch(MainActivity::class.java)
 
-    onView(withId(R.id.login_email)).perform(typeText("test@test.test"))
-    Espresso.pressBack()
-    onView(withId(R.id.login_password)).perform(typeText("secret123"))
-    Espresso.pressBack()
-    onView(withId(R.id.login_login_btn)).perform(click())
-
-    onView(withId(R.id.textView)).check(matches(isDisplayed()))
-    onView(withId(R.id.textView)).check(matches(withText("Hello World!!!")))
-
-    Espresso.pressBack()
-
-    onView(withId(R.id.login_email)).check(matches(isDisplayed()))
-    onView(withId(R.id.login_password)).check(matches(isDisplayed()))
-    onView(withId(R.id.login_login_btn)).check(matches(isDisplayed()))
-  }
 }
