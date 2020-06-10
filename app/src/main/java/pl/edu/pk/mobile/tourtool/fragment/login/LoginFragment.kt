@@ -12,9 +12,11 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import dagger.android.support.AndroidSupportInjection
 import dagger.android.support.DaggerFragment
+import kotlinx.coroutines.delay
 import javax.inject.Inject
 import pl.edu.pk.mobile.tourtool.R
 import pl.edu.pk.mobile.tourtool.databinding.LoginFragmentBinding
+import pl.edu.pk.mobile.tourtool.fragment.loggedin.EspressoIdlingResource
 
 class LoginFragment : DaggerFragment() {
 
@@ -35,23 +37,31 @@ class LoginFragment : DaggerFragment() {
     container: ViewGroup?,
     savedInstanceState: Bundle?
   ): View? {
+
     subscribeViewModel()
     val root = inflater.inflate(R.layout.login_fragment, container, false)
     viewDataBinding = LoginFragmentBinding.bind(root).apply {
       this.viewmodel = viewModel
     }
+
+
     return viewDataBinding.root
   }
 
   override fun onActivityCreated(savedInstanceState: Bundle?) {
+
     super.onActivityCreated(savedInstanceState)
+
 
     viewDataBinding.lifecycleOwner = this.viewLifecycleOwner
 
     setupSignUpBtn()
+
+
   }
 
   private fun subscribeViewModel() {
+
 
     viewModel.toastMessage.observe(viewLifecycleOwner, Observer {
       it.getContentIfNotHandled()?.let { message ->
@@ -66,6 +76,7 @@ class LoginFragment : DaggerFragment() {
         }
       }
     })
+
   }
 
   private fun setupSignUpBtn() {
@@ -86,5 +97,6 @@ class LoginFragment : DaggerFragment() {
     val action =
       LoginFragmentDirections.actionToLoggedInFragment()
     findNavController().navigate(action)
+
   }
 }

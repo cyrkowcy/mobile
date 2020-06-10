@@ -55,6 +55,7 @@ class LoginViewModel @Inject constructor(
       try {
         _dataLoading.postValue(true)
         EspressoIdlingResource.increment()
+
         val token = userRepository.validateCredentials(
           emailVal.toString(),
           passwordVal.toString()
@@ -64,11 +65,13 @@ class LoginViewModel @Inject constructor(
 
         _loginSuccess.value = Event(true)
         _dataLoading.postValue(false)
-        EspressoIdlingResource.decrement()
+
       } catch (e: WrongCredentialsException) {
         _dataLoading.postValue(false)
         _toastMessage.value = Event(e.message.toString())
       }
+      EspressoIdlingResource.decrement()
+
     }
   }
 

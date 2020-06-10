@@ -43,7 +43,20 @@ class LoggedInFragmentTest {
     onView(withId(R.id.textView)).check(matches(isDisplayed()))
     onView(withId(R.id.textView)).check(matches(withText("Hello World!!!")))
   }
+  @Test
+  fun test_is_login_message_not_displayed_when_wrong_credentials() {
 
+    val activityScenario = ActivityScenario.launch(MainActivity::class.java)
+    onView(withId(R.id.login_email)).perform(typeText("wrong@wrong.wrong"))
+    Espresso.pressBack()
+    onView(withId(R.id.login_password)).perform(typeText("wrong123"))
+    Espresso.pressBack()
+    onView(withId(R.id.login_login_btn)).perform(click())
+
+    onView(withId(R.id.login_email)).check(matches(isDisplayed()))
+    onView(withId(R.id.login_password)).check(matches(isDisplayed()))
+    onView(withId(R.id.login_login_btn)).check(matches(isDisplayed()))
+  }
   @Test
   fun test_is_back_button_working() {
     val activityScenario = ActivityScenario.launch(MainActivity::class.java)
