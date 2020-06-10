@@ -25,6 +25,7 @@ class LoggedInFragment : Fragment() {
   }
 
   override fun onActivityCreated(savedInstanceState: Bundle?) {
+
     super.onActivityCreated(savedInstanceState)
     viewModel = ViewModelProviders.of(this).get(LoggedInViewModel::class.java)
     // TODO: Use the ViewModel

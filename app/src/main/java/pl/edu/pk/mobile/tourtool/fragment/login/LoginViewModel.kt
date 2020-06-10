@@ -7,6 +7,7 @@ import androidx.lifecycle.viewModelScope
 import com.auth0.android.jwt.JWT
 import javax.inject.Inject
 import kotlinx.coroutines.launch
+import pl.edu.pk.mobile.tourtool.fragment.loggedin.EspressoIdlingResource
 import pl.edu.pk.mobile.tourtool.service.model.Email
 import pl.edu.pk.mobile.tourtool.service.model.Password
 import pl.edu.pk.mobile.tourtool.service.repositories.SharedPreferencesRepository
@@ -39,6 +40,7 @@ class LoginViewModel @Inject constructor(
   val toastMessage: LiveData<Event<String>> = _toastMessage
 
   fun verifyUser() {
+
     val emailVal = this.email.value
     val passwordVal = this.password.value
     if (emailVal.isNullOrBlank()) {
@@ -52,6 +54,7 @@ class LoginViewModel @Inject constructor(
     viewModelScope.launch {
       try {
         _dataLoading.postValue(true)
+        EspressoIdlingResource.increment()
 
         val token = userRepository.validateCredentials(
           emailVal.toString(),
@@ -62,10 +65,13 @@ class LoginViewModel @Inject constructor(
 
         _loginSuccess.value = Event(true)
         _dataLoading.postValue(false)
+
       } catch (e: WrongCredentialsException) {
         _dataLoading.postValue(false)
         _toastMessage.value = Event(e.message.toString())
       }
+      EspressoIdlingResource.decrement()
+
     }
   }
 
