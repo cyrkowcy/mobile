@@ -21,7 +21,7 @@ class SignUpFragmentTest {
   fun test_is_login_message_displayed() {
     val activityScenario = ActivityScenario.launch(MainActivity::class.java)
     onView(withId(R.id.login_signin_btn)).perform(click())
-    // Thread.sleep(10000);
+
     onView(withId(R.id.textView3)).check(matches(isDisplayed()))
     onView(withId(R.id.textView3)).check(matches(withText("Sign up NOW!!!")))
   }
@@ -29,7 +29,7 @@ class SignUpFragmentTest {
   fun test_is_back_button_working() {
     val activityScenario = ActivityScenario.launch(MainActivity::class.java)
     onView(withId(R.id.login_signin_btn)).perform(click())
-    // Thread.sleep(10000);
+
     onView(withId(R.id.textView3)).check(matches(isDisplayed()))
     onView(withId(R.id.textView3)).check(matches(withText("Sign up NOW!!!")))
 

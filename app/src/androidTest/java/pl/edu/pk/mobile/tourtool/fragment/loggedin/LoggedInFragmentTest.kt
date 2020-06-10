@@ -54,7 +54,6 @@ class LoggedInFragmentTest {
     Espresso.pressBack()
     onView(withId(R.id.login_login_btn)).perform(click())
 
-    // Thread.sleep(5000)
     onView(withId(R.id.textView)).check(matches(isDisplayed()))
     onView(withId(R.id.textView)).check(matches(withText("Hello World!!!")))
 
