@@ -1,6 +1,7 @@
 package pl.edu.pk.mobile.tourtool.fragment.login
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,11 +13,11 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import dagger.android.support.AndroidSupportInjection
 import dagger.android.support.DaggerFragment
-import kotlinx.coroutines.delay
 import javax.inject.Inject
 import pl.edu.pk.mobile.tourtool.R
 import pl.edu.pk.mobile.tourtool.databinding.LoginFragmentBinding
-import pl.edu.pk.mobile.tourtool.fragment.loggedin.EspressoIdlingResource
+import pl.edu.pk.mobile.tourtool.util.SharedPreferencesHolder
+import pl.edu.pk.mobile.tourtool.util.hideKeyboard
 
 class LoginFragment : DaggerFragment() {
 
@@ -24,6 +25,9 @@ class LoginFragment : DaggerFragment() {
 
   @Inject
   lateinit var viewModelFactory: ViewModelProvider.Factory
+
+  @Inject
+  lateinit var sharedPreferencesHolder: SharedPreferencesHolder
 
   private val viewModel by viewModels<LoginViewModel> { viewModelFactory }
 
@@ -37,31 +41,28 @@ class LoginFragment : DaggerFragment() {
     container: ViewGroup?,
     savedInstanceState: Bundle?
   ): View? {
-
     subscribeViewModel()
     val root = inflater.inflate(R.layout.login_fragment, container, false)
     viewDataBinding = LoginFragmentBinding.bind(root).apply {
       this.viewmodel = viewModel
     }
-
-
     return viewDataBinding.root
   }
 
   override fun onActivityCreated(savedInstanceState: Bundle?) {
-
     super.onActivityCreated(savedInstanceState)
-
 
     viewDataBinding.lifecycleOwner = this.viewLifecycleOwner
 
     setupSignUpBtn()
-
-
+    setupLoginBtn()
   }
 
   private fun subscribeViewModel() {
 
+    if (isTokenValid()) {
+      navigateToLoggedIn()
+    }
 
     viewModel.toastMessage.observe(viewLifecycleOwner, Observer {
       it.getContentIfNotHandled()?.let { message ->
@@ -76,13 +77,21 @@ class LoginFragment : DaggerFragment() {
         }
       }
     })
-
   }
 
   private fun setupSignUpBtn() {
     activity?.findViewById<Button>(R.id.login_signin_btn)?.let {
       it.setOnClickListener {
         navigateToSignUp()
+      }
+    }
+  }
+
+  private fun setupLoginBtn() {
+    activity?.findViewById<Button>(R.id.login_login_btn)?.let {
+      it.setOnClickListener {
+        hideKeyboard()
+        viewModel.verifyUser()
       }
     }
   }
@@ -97,6 +106,19 @@ class LoginFragment : DaggerFragment() {
     val action =
       LoginFragmentDirections.actionToLoggedInFragment()
     findNavController().navigate(action)
+  }
 
+  private fun isTokenValid(): Boolean {
+    try {
+      val token = sharedPreferencesHolder.getToken()
+      if (!token.isExpired(0)) {
+        Log.d("Login Fragment", "Token is valid, auto logging in.")
+        return true
+      }
+    } catch (e: IllegalStateException) {
+      Log.d("Login Fragment", "Token does not exist, processing to LoginView")
+      return false
+    }
+    return false
   }
 }
