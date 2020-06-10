@@ -1,12 +1,10 @@
 package pl.edu.pk.mobile.tourtool.fragment.login
 
-import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.inputmethod.InputMethodManager
 import android.widget.Button
 import android.widget.Toast
 import androidx.fragment.app.viewModels
@@ -19,6 +17,7 @@ import javax.inject.Inject
 import pl.edu.pk.mobile.tourtool.R
 import pl.edu.pk.mobile.tourtool.databinding.LoginFragmentBinding
 import pl.edu.pk.mobile.tourtool.util.SharedPreferencesHolder
+import pl.edu.pk.mobile.tourtool.util.hideKeyboard
 
 class LoginFragment : DaggerFragment() {
 
@@ -121,13 +120,5 @@ class LoginFragment : DaggerFragment() {
       return false
     }
     return false
-  }
-}
-
-fun DaggerFragment.hideKeyboard() {
-  val focus = requireActivity().currentFocus
-  if (focus != null) {
-    val input = requireActivity().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-    input.hideSoftInputFromWindow(focus.windowToken, 0)
   }
 }

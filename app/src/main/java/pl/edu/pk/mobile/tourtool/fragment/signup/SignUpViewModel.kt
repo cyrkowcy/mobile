@@ -10,8 +10,8 @@ import pl.edu.pk.mobile.tourtool.service.model.Email
 import pl.edu.pk.mobile.tourtool.service.model.Name
 import pl.edu.pk.mobile.tourtool.service.model.Password
 import pl.edu.pk.mobile.tourtool.service.model.User
+import pl.edu.pk.mobile.tourtool.service.repositories.ServerResponseException
 import pl.edu.pk.mobile.tourtool.service.repositories.UserRepository
-import pl.edu.pk.mobile.tourtool.service.repositories.WrongCredentialsException
 import pl.edu.pk.mobile.tourtool.util.Event
 
 class SignUpViewModel @Inject constructor(
@@ -19,13 +19,10 @@ class SignUpViewModel @Inject constructor(
 ) : ViewModel() {
   // Two-way databinding, exposing MutableLiveData
   val firstName = MutableLiveData<String>()
-  val fName = firstName.value
 
   val lastName = MutableLiveData<String>()
-  val lName = lastName.value
 
   val email = MutableLiveData<String>()
-  val em = email.value
 
   // Two-way databinding, exposing MutableLiveData
   val password = MutableLiveData<String>()
@@ -51,14 +48,22 @@ class SignUpViewModel @Inject constructor(
     }
     viewModelScope.launch {
       try {
+        val fName = firstName.value
+        val lName = lastName.value
+        val em = email.value
+        val pass = password.value
         _dataLoading.postValue(true)
         userRepository.createUser(
-          User(Name(fName.toString()), Name(lName.toString()),
-            Email(em.toString()), Password(pword.toString()))
+          User(
+            Name(fName.toString()),
+            Name(lName.toString()),
+            Email(em.toString()),
+            Password(pass.toString())
+          )
         )
         _signupSuccess.value = Event(true)
         _dataLoading.postValue(false)
-      } catch (e: WrongCredentialsException) {
+      } catch (e: ServerResponseException) {
         _dataLoading.postValue(false)
         _toastMessage.value = Event(e.message.toString())
       }
